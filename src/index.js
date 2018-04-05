@@ -34,7 +34,7 @@ class Backend {
       callback
     });
 
-    this.load();
+    this.debouncedLoad();
   }
 
   load() {

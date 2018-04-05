@@ -91,7 +91,7 @@ var Backend = function () {
         callback: callback
       });
 
-      this.load();
+      this.debouncedLoad();
     }
   }, {
     key: 'load',
