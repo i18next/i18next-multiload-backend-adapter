@@ -2,12 +2,11 @@
 
 module.exports = function(karma) {
   karma.set({
-
-    frameworks: [ 'mocha', 'chai', 'sinon', 'browserify' ],
+    frameworks: ['mocha', 'chai', 'sinon', 'browserify'],
 
     files: [
       //'vendor/external.js',
-      'test/**/*.spec.js',
+      'test/**/*.spec.js'
       // { pattern: 'test/locales/**/*.json*', watched: true, included: false, served: true},
     ],
 
@@ -15,14 +14,14 @@ module.exports = function(karma) {
     //   '/locales': 'http://localhost:9876/base/test/locales'
     // },
 
-    reporters: [ 'spec'/*, 'coverage' */],
+    reporters: ['spec' /*, 'coverage' */],
 
     preprocessors: {
-      'test/**/*.spec.js': [ 'browserify' ],
-      'src/**/*.js': [ 'browserify', 'coverage' ]
+      'test/**/*.spec.js': ['browserify'],
+      'src/**/*.js': ['browserify', 'coverage']
     },
 
-    browsers: [ 'PhantomJS' ],
+    browsers: ['PhantomJS'],
 
     port: 9876,
 
@@ -42,13 +41,15 @@ module.exports = function(karma) {
     browserify: {
       debug: true,
       transform: [
-        'babelify', /*'brfs',*/ 'browserify-istanbul'
+        'babelify',
+        // 'brfs',
+        'browserify-istanbul'
       ]
     },
 
     coverageReporter: {
-      type : 'lcov', // using fixed version from branch: https://github.com/karma-runner/karma-coverage/issues/157
-      dir : 'coverage/'
+      type: 'lcov', // using fixed version from branch: https://github.com/karma-runner/karma-coverage/issues/157
+      dir: 'coverage/'
     }
   });
 };

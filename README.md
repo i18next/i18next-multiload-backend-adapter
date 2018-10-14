@@ -22,9 +22,7 @@ Wiring up:
 import i18next from 'i18next';
 import BackendAdapter from 'i18next-multiload-backend-adapter';
 
-i18next
-  .use(BackendAdapter)
-  .init(i18nextOptions);
+i18next.use(BackendAdapter).init(i18nextOptions);
 ```
 
 - As with all modules you can either pass the constructor function (class) to the i18next.use or a concrete instance.
@@ -41,7 +39,28 @@ i18next
   backendOption: { /* options of adapted backend */ },
 
   // interval to wait for calling readMulti after receiving a read
-  debounceInterval: 50
+  debounceInterval: 50,
+
+  // Default: true; Set to false to load namespaces 1 language at a time
+  //
+  // false: the returned data needs to be formated like so:
+  // {
+  //   ns1: { ...keys },
+  //   ns2: { ...keys }
+  // }
+  //
+  // true: the returned data needs to be formated like so:
+  // {
+  //   en: {
+  //     ns1: { ...keys },
+  //     ns2: { ...keys }
+  //   }
+  //   de: {
+  //     ns1: { ...keys },
+  //     ns2: { ...keys }
+  //   }
+  // }
+  multiLanguage: true
 }
 ```
 
@@ -53,26 +72,24 @@ Options can be passed in:
 import i18next from 'i18next';
 import BackendAdapter from 'i18next-multiload-backend-adapter';
 
-i18next
-  .use(Backend)
-  .init({
-    backend: options
-  });
+i18next.use(Backend).init({
+  backend: options
+});
 ```
 
 on construction:
 
 ```js
-  import BackendAdapter from 'i18next-multiload-backend-adapter';
-  const Backend = new BackendAdapter(null, options);
+import BackendAdapter from 'i18next-multiload-backend-adapter';
+const Backend = new BackendAdapter(null, options);
 ```
 
 via calling init:
 
 ```js
-  import BackendAdapter from 'i18next-multiload-backend-adapter';
-  const Backend = new BackendAdapter();
-  Backend.init(options);
+import BackendAdapter from 'i18next-multiload-backend-adapter';
+const Backend = new BackendAdapter();
+Backend.init(options);
 ```
 
 ### more complete sample
@@ -82,19 +99,17 @@ import i18next from 'i18next';
 import BackendAdapter from 'i18next-multiload-backend-adapter';
 import XHR from 'i18next-xhr-backend'; // have a own xhr fallback
 
-i18next
-  .use(BackendAdapter)
-  .init({
-    backend: {
-      backend: XHR,
-      backendOption: {
-        loadPath: '/locales/{{lng}}/{{ns}}.json' // xhr load path for my own fallback
-      }
+i18next.use(BackendAdapter).init({
+  backend: {
+    backend: XHR,
+    backendOption: {
+      loadPath: '/locales/{{lng}}/{{ns}}.json' // xhr load path for my own fallback
     }
-  });
+  }
+});
 ```
 
---------------
+---
 
 <h3 align="center">Gold Sponsors</h3>
 
