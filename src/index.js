@@ -4,7 +4,7 @@ function getDefaults() {
   return {
     debounceInterval: 50,
 
-    // Default: true; This option allows to fetch namespaces for multiple languages at once or to fetch them per language
+    // Default: true; (Backwards compatible). This option allows to fetch namespaces for multiple languages at once or to fetch them per language
     multiLanguage: true
   };
 }
