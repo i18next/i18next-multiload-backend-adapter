@@ -4,6 +4,7 @@
   "description": "enables multiload behaviour of wrapped backend",
   "main": "./index.js",
   "jsnext:main": "dist/es/index.js",
+  "types": "./index.d.ts",
   "keywords": [
     "i18next",
     "i18next-backend"
