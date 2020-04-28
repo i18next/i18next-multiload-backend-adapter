@@ -80,15 +80,15 @@ via calling init:
 ```js
 import i18next from 'i18next';
 import BackendAdapter from 'i18next-multiload-backend-adapter';
-import XHR from 'i18next-xhr-backend'; // have a own xhr fallback
+import Http from 'i18next-http-backend'; // have a own http fallback
 
 i18next
   .use(BackendAdapter)
   .init({
     backend: {
-      backend: XHR,
+      backend: Http,
       backendOption: {
-        loadPath: '/locales/{{lng}}/{{ns}}.json' // xhr load path for my own fallback
+        loadPath: '/locales/{{lng}}/{{ns}}.json' // http load path for my own fallback
       }
     }
   });
