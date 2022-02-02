@@ -5,7 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/i18next-multiload-backend-adapter.svg?style=flat-square)](https://www.npmjs.com/package/i18next-multiload-backend-adapter)
 [![David](https://img.shields.io/david/i18next/i18next-multiload-backend-adapter.svg?style=flat-square)](https://david-dm.org/i18next/i18next-multiload-backend-adapter)
 
-This is a i18next backend to enable [another backend's](https://www.i18next.com/plugins-and-utils.html#backends) multiload behaviour of loading multiple lng-ns combinations with one request.
+This is a i18next backend to enable [another backend's](https://www.i18next.com/overview/plugins-and-utils#backends) multiload behaviour of loading multiple lng-ns combinations with one request.
 
 # Getting started
 
