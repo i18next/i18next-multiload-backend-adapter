@@ -1,47 +1,48 @@
-import Backend from '../src/';
-import Interpolator from 'i18next/dist/commonjs/Interpolator';
-import MockBackend from './MockBackend';
+import expect from 'expect.js'
+import Backend from '../lib/index.js'
+import i18next from 'i18next'
+import MockBackend from './MockBackend.js'
 
+i18next.init()
 
 describe('chained backend', () => {
-
   describe('basic read', () => {
-    let backend;
+    let backend
 
     before(() => {
       backend = new Backend({
-        interpolator: new Interpolator()
+        interpolator: i18next.services.interpolator
       }, {
         backend: MockBackend,
         backendOption: {}
-      });
-    });
+      })
+    })
 
     it('should load data', (done) => {
-      let todo = 2;
+      // let todo = 2
 
-      const doneOne = () => {
-        todo--;
-        if (!todo) done();
-      }
+      // const doneOne = () => {
+      //   todo--
+      //   if (!todo) done()
+      // }
 
-      backend.read('en', 'test', function(err, data) {
-        expect(data).to.eql({ foo: 'bar' });
-      });
+      backend.read('en', 'test', function (err, data) {
+        expect(err).not.to.be.ok()
+        expect(data).to.eql({ foo: 'bar' })
+      })
 
-      backend.read('de', 'test2', function(err, data) {
-        expect(data).to.eql({ foo: 'bar' });
-        done();
-      });
-    });
+      backend.read('de', 'test2', function (err, data) {
+        expect(err).not.to.be.ok()
+        expect(data).to.eql({ foo: 'bar' })
+        done()
+      })
+    })
 
     it('should save missing', () => {
-      backend.create('en', 'test', 'key1', 'test1');
-      expect(backend.backend.added['en.test.key1']).to.eql('test1');
-    });
-
-  });
-
+      backend.create('en', 'test', 'key1', 'test1')
+      expect(backend.backend.added['en.test.key1']).to.eql('test1')
+    })
+  })
 
   // describe('with loadPath function', () => {
   //   let backend;
@@ -71,5 +72,4 @@ describe('chained backend', () => {
   //   });
   //
   // });
-
-});
+})

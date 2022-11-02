@@ -1,13 +1,26 @@
 {
   "env": {
-    "development": {
-      "presets": [ "es2015", "stage-0" ]
+    "esm": {
+      "presets": [
+        ["@babel/preset-env", {
+          "modules": false,
+          "targets": {
+            "esmodules": true,
+            "ie": 11
+          }
+        }]
+      ]
     },
-    "rollup": {
-      "presets": [ ["es2015", { "modules": false }], "stage-0"  ]
-    },
-    "jsnext": {
-      "presets": [ ["es2015", { "modules": false }], "stage-0"  ]
+    "cjs": {
+      "plugins": ["add-module-exports"],
+      "presets": [
+        ["@babel/preset-env", {
+          "targets": {
+            "ie": 11
+          }
+        }]
+      ]
     }
-  }
+  },
+  "comments": false
 }

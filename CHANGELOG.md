@@ -1,3 +1,7 @@
+### 2.0.0
+
+- typescript fix for i18next v22
+
 ### 1.0.0
 
 - typescript: add initial types

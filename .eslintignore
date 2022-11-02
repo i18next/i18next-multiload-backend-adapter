@@ -1,3 +1,9 @@
-**/dist/*
-**/node_modules/*
-**/*.min.*
+/build
+/node_modules
+/cjs
+/esm
+/dist
+/i18nextMultiloadBackendAdapter.js
+/i18nextMultiloadBackendAdapter.min.js
+/example
+/test/deno

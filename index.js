@@ -1,1 +1,2 @@
-module.exports = require('./dist/commonjs/index.js').default;
+import backend from './lib/index.js'
+export default backend
