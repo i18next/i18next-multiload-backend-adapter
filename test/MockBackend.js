@@ -21,6 +21,20 @@ class MockBackend {
       callback(null, res)
     }, 50)
   }
+  // readMulti (languages, namespaces) {
+  //   const res = {}
+  //   languages.forEach(l => {
+  //     res[l] = namespaces.reduce((mem, n) => {
+  //       mem[n] = { foo: 'bar' }
+  //       return mem
+  //     }, {})
+  //   })
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       resolve(res)
+  //     }, 50)
+  //   })
+  // }
 
   create (languages, namespace, key, fallbackValue) {
     this.added[`${languages}.${namespace}.${key}`] = fallbackValue

@@ -66,7 +66,7 @@ var Backend = function () {
         namespaces: []
       });
 
-      this.backend.readMulti(toLoad.languages, toLoad.namespaces, function (err, data) {
+      var resolver = function resolver(err, data) {
         if (err) return loading.forEach(function (item) {
           return item.callback(err, data);
         });
@@ -74,13 +74,56 @@ var Backend = function () {
           var translations = data[item.language] && data[item.language][item.namespace];
           item.callback(null, translations || {});
         });
-      });
+      };
+
+      var fc = this.backend.readMulti.bind(this.backend);
+      if (fc.length === 2) {
+        try {
+          var r = fc(toLoad.languages, toLoad.namespaces);
+          if (r && typeof r.then === 'function') {
+            r.then(function (data) {
+              return resolver(null, data);
+            }).catch(resolver);
+          } else {
+            resolver(null, r);
+          }
+        } catch (err) {
+          resolver(err);
+        }
+        return;
+      }
+
+      fc(toLoad.languages, toLoad.namespaces, resolver);
     }
   }, {
     key: "create",
     value: function create(languages, namespace, key, fallbackValue) {
+      var clb = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : function () {};
+      var opts = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
       if (!this.backend || !this.backend.create) return;
-      this.backend.create(languages, namespace, key, fallbackValue);
+      var fc = this.backend.create.bind(this.backend);
+      if (fc.length < 6) {
+        try {
+          var r;
+          if (fc.length === 5) {
+            r = fc(languages, namespace, key, fallbackValue, opts);
+          } else {
+            r = fc(languages, namespace, key, fallbackValue);
+          }
+          if (r && typeof r.then === 'function') {
+            r.then(function (data) {
+              return clb(null, data);
+            }).catch(clb);
+          } else {
+            clb(null, r);
+          }
+        } catch (err) {
+          clb(err);
+        }
+        return;
+      }
+
+      fc(languages, namespace, key, fallbackValue, clb, opts);
     }
   }]);
   return Backend;
