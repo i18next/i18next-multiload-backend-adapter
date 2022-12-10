@@ -92,6 +92,28 @@ i18next
   });
 ```
 
+## TypeScript
+
+To properly type the backend options, you can import the `MultiloadBackendOptions` interface and use it as a generic type parameter to the i18next's `init` method, e.g.:
+
+```ts
+import i18n from 'i18next'
+import BackendAdapter, { MultiloadBackendOptions } from 'i18next-multiload-backend-adapter'
+
+i18n
+  .use(BackendAdapter)
+  .init<MultiloadBackendOptions>({
+    backend: {
+      backend: Http,
+      backendOption: {
+        loadPath: '/locales/{{lng}}/{{ns}}.json' // http load path for my own fallback
+      }
+    },
+
+    // other i18next options
+  })
+```
+
 --------------
 
 <h3 align="center">Gold Sponsors</h3>

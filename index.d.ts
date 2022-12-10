@@ -1,27 +1,26 @@
-declare namespace I18NextMultiloadBackendAdapter {
-  interface BackendOptions {
-    backend: any,
-    backendOption?: any,
-    debounceInterval?: number
-  }
+import { BackendModule, ReadCallback } from "i18next";
 
-  type LoadCallback = (error: any, result: string | false) => void;
+export interface MultiloadBackendOptions {
+  backend: any,
+  backendOption?: any,
+  debounceInterval?: number
 }
 
-export default class I18NextMultiloadBackendAdapter {
-  constructor(services?: any, options?: I18NextMultiloadBackendAdapter.BackendOptions);
+export default class I18NextMultiloadBackendAdapter
+  implements BackendModule<MultiloadBackendOptions> {
+  constructor(services?: any, options?: MultiloadBackendOptions);
   init(
     services?: any,
-    options?: I18NextMultiloadBackendAdapter.BackendOptions,
+    options?: MultiloadBackendOptions,
     i18nextOptions?: any
   ): void;
   read(
     language: string,
     namespace: string,
-    callback: I18NextMultiloadBackendAdapter.LoadCallback
+    callback: ReadCallback
   ): void;
   create(
-    languages: string | string[],
+    languages: string[],
     namespace: string,
     key: string,
     fallbackValue: string
@@ -29,11 +28,5 @@ export default class I18NextMultiloadBackendAdapter {
   type: "backend";
   services: any;
   backends: any[];
-  options: I18NextMultiloadBackendAdapter.BackendOptions;
-}
-
-declare module "i18next" {
-  interface CustomPluginOptions {
-    backend?: I18NextMultiloadBackendAdapter.BackendOptions;
-  }
+  options: MultiloadBackendOptions;
 }
