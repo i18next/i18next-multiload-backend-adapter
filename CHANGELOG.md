@@ -1,3 +1,7 @@
+### 2.2.1
+
+- update dev deps
+
 ### 2.2.0
 
 - types: export the backend options type

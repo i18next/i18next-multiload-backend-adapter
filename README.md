@@ -1,9 +1,24 @@
 # Introduction
 
-[![Travis](https://img.shields.io/travis/i18next/i18next-multiload-backend-adapter/master.svg?style=flat-square)](https://travis-ci.org/i18next-multiload-backend-adapter)
 [![npm version](https://img.shields.io/npm/v/i18next-multiload-backend-adapter.svg?style=flat-square)](https://www.npmjs.com/package/i18next-multiload-backend-adapter)
 
 This is a i18next backend to enable [another backend's](https://www.i18next.com/overview/plugins-and-utils#backends) multiload behaviour of loading multiple lng-ns combinations with one request.
+
+Your backend needs to return this structure:
+```js
+{
+  [lang] : {
+    [namespaceA]: {},
+    [namespaceB]: {},
+    // ...etc
+  },
+  [lang2] : {
+    // ...etc
+  }
+}
+```
+
+[Here](https://github.com/i18next/i18next-multiload-backend-adapter/tree/master/example) you can find a simplified example.
 
 # Getting started
 
@@ -86,7 +101,7 @@ i18next
     backend: {
       backend: Http,
       backendOption: {
-        loadPath: '/locales/{{lng}}/{{ns}}.json' // http load path for my own fallback
+        loadPath: '/locales?lng={{lng}}&ns={{ns}}' // http load path for my own fallback
       }
     }
   });
@@ -106,7 +121,7 @@ i18n
     backend: {
       backend: Http,
       backendOption: {
-        loadPath: '/locales/{{lng}}/{{ns}}.json' // http load path for my own fallback
+        loadPath: '/locales?lng={{lng}}&ns={{ns}}' // http load path for my own fallback
       }
     },
 
