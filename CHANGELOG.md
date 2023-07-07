@@ -1,3 +1,7 @@
+### 2.2.2
+
+- fix last build
+
 ### 2.2.1
 
 - update dev deps
