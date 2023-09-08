@@ -1,10 +1,14 @@
 import { readFile } from 'fs/promises'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
+import express from 'express'
+import i18next from 'i18next'
+import HttpBackend from 'i18next-http-backend'
+import MultiLoadBackendAdapter from 'i18next-multiload-backend-adapter'
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // serve translations
-import express from 'express'
 const app = express()
 app.get('/locales', async (req, res) => {
   const lngs = req.query.lng.split(' ')
@@ -21,9 +25,6 @@ app.get('/locales', async (req, res) => {
 app.listen(8080)
 
 // i18next in action...
-import i18next from 'i18next'
-import HttpBackend from 'i18next-http-backend'
-import MultiLoadBackendAdapter from 'i18next-multiload-backend-adapter'
 // const HttpBackend = require('../../cjs')
 i18next.use(MultiLoadBackendAdapter).init({
   lng: 'en',

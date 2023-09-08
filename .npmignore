@@ -11,4 +11,5 @@ package-lock.json
 README.md
 tsconfig.json
 example
+examples
 .babelrc
