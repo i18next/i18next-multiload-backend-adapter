@@ -29,7 +29,7 @@ app.listen(8080)
 // i18next in action...
 // const HttpBackend = require('../../cjs')
 i18next.use(ChainedBackend).init({
-  debug: true,
+  // debug: true,
   lng: 'en',
   fallbackLng: 'en',
   preload: ['en', 'de'],
@@ -43,7 +43,7 @@ i18next.use(ChainedBackend).init({
     backendOptions: [{
       loadPath: './locales_cache/{{lng}}/{{ns}}.json',
       addPath: './locales_cache/{{lng}}/{{ns}}.json',
-      expirationTime: 15 * 1000 // all 30 seconds the cache should be deleted
+      expirationTime: 15 * 1000 // all 15 seconds the cache should be deleted
     }, {
       backend: HttpBackend,
       backendOption: {
@@ -51,12 +51,6 @@ i18next.use(ChainedBackend).init({
       }
     }]
   }
-  // backend: {
-  //   backend: HttpBackend,
-  //   backendOption: {
-  //     loadPath: 'http://localhost:8080/locales?lng={{lng}}&ns={{ns}}'
-  //   }
-  // }
 }, (err, t) => {
   if (err) return console.error(err)
   setInterval(() => {
