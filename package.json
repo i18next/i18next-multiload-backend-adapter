@@ -9,7 +9,7 @@
     ".": {
       "types": {
         "require": "./cjs/index.d.ts",
-        "import": "./esm/index.d.ts"
+        "import": "./esm/index.d.mts"
       },
       "module": "./esm/index.js",
       "import": "./esm/index.js",
@@ -21,32 +21,32 @@
       "default": "./cjs/index.js"
     },
     "./esm": {
-      "types": "./esm/index.d.ts",
+      "types": "./esm/index.d.mts",
       "default": "./esm/index.js"
     }
   },
   "module": "./esm/index.js",
-  "types": "./index.d.ts",
+  "types": "./index.d.mts",
   "devDependencies": {
-    "@babel/cli": "7.22.6",
-    "@babel/core": "7.22.6",
-    "@babel/preset-env": "7.22.6",
+    "@babel/cli": "7.23.0",
+    "@babel/core": "7.23.3",
+    "@babel/preset-env": "7.23.3",
     "babel-plugin-add-module-exports": "1.0.4",
     "browserify": "17.0.0",
     "dtslint": "4.2.1",
-    "eslint": "8.44.0",
+    "eslint": "8.53.0",
     "eslint-config-standard": "17.1.0",
-    "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-n": "15.6.1",
+    "eslint-plugin-import": "2.29.0",
+    "eslint-plugin-n": "16.3.1",
     "eslint-plugin-promise": "6.1.1",
     "eslint-plugin-require-path-exists": "1.1.9",
     "eslint-plugin-standard": "5.0.0",
     "expect.js": "0.3.1",
-    "i18next": "23.2.6",
+    "i18next": "23.7.1",
     "mocha": "10.2.0",
     "tslint": "5.20.1",
-    "tsd": "0.28.1",
-    "typescript": "5.1.6",
+    "tsd": "0.29.0",
+    "typescript": "5.2.2",
     "uglify-js": "3.17.4"
   },
   "description": "enables multiload behaviour of wrapped backend",
@@ -65,7 +65,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
-    "compile:esm": "rm -rf esm && mkdir esm && BABEL_ENV=esm babel lib -d esm && cp index.d.ts esm/index.d.ts",
+    "compile:esm": "rm -rf esm && mkdir esm && BABEL_ENV=esm babel lib -d esm && cp index.d.ts esm/index.d.ts && cp index.d.mts esm/index.d.mts",
     "compile:cjs": "rm -rf cjs && mkdir cjs && BABEL_ENV=cjs babel lib -d cjs && cp index.d.ts cjs/index.d.ts && echo '{\"type\":\"commonjs\"}' > cjs/package.json",
     "compile": "npm run compile:esm && npm run compile:cjs",
     "browser": "browserify --standalone i18nextMultiloadBackendAdapter cjs/index.js -o i18nextMultiloadBackendAdapter.js && uglifyjs i18nextMultiloadBackendAdapter.js --compress --mangle -o i18nextMultiloadBackendAdapter.min.js",

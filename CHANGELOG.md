@@ -1,3 +1,7 @@
+### 2.3.0
+
+- fix: separate cjs and mjs typings
+
 ### 2.2.2
 
 - fix last build
