@@ -18,7 +18,7 @@ Your backend needs to return this structure:
 }
 ```
 
-[Here](https://github.com/i18next/i18next-multiload-backend-adapter/tree/master/example) you can find a simplified example.
+[Here](https://github.com/i18next/i18next-multiload-backend-adapter/tree/master/examples) you can find a simplified example.
 
 # Getting started
 
