@@ -33,7 +33,6 @@
     "@babel/preset-env": "7.23.3",
     "babel-plugin-add-module-exports": "1.0.4",
     "browserify": "17.0.0",
-    "dtslint": "4.2.1",
     "eslint": "8.53.0",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.29.0",
@@ -44,7 +43,6 @@
     "expect.js": "0.3.1",
     "i18next": "23.7.1",
     "mocha": "10.2.0",
-    "tslint": "5.20.1",
     "tsd": "0.29.0",
     "typescript": "5.2.2",
     "uglify-js": "3.17.4"
@@ -71,7 +69,7 @@
     "browser": "browserify --standalone i18nextMultiloadBackendAdapter cjs/index.js -o i18nextMultiloadBackendAdapter.js && uglifyjs i18nextMultiloadBackendAdapter.js --compress --mangle -o i18nextMultiloadBackendAdapter.min.js",
     "build": "npm run compile && npm run browser",
     "test": "npm run lint && npm run build && mocha test -R spec --exit --experimental-modules && npm run test:typescript",
-    "test:typescript": "tslint --project tsconfig.json && tsd",
+    "test:typescript": "tsd",
     "preversion": "npm run test && npm run build && git push",
     "postversion": "git push && git push --tags"
   },
