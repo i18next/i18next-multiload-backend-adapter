@@ -20,6 +20,10 @@ Your backend needs to return this structure:
 
 [Here](https://github.com/i18next/i18next-multiload-backend-adapter/tree/master/examples) you can find a simplified example.
 
+## Advice:
+
+If you don't like to manage your translation files manually or are simply looking for a [better management solution](https://www.locize.com?utm_source=i18next_multiload_backend_adapter_readme&utm_medium=github&utm_campaign=readme), take a look at [i18next-locize-backend](https://github.com/locize/i18next-locize-backend) — it natively returns multi-namespace responses without needing this adapter. The i18next [backend plugin](https://www.i18next.com/overview/plugins-and-utils#backends) for 🌐 [Locize](https://www.locize.com?utm_source=i18next_multiload_backend_adapter_readme&utm_medium=github&utm_campaign=readme) ☁️.
+
 # Getting started
 
 Source can be loaded via [npm](https://www.npmjs.com/package/i18next-multiload-backend-adapter) or [downloaded](https://github.com/i18next/i18next-chained-backend/blob/master/i18nextMultiloadBackendAdapter.min.js) from this repo.
