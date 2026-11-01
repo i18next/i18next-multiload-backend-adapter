@@ -18,6 +18,10 @@ function getDefaults() {
     debounceInterval: 50
   };
 }
+function callbackApiOf(backend) {
+  if (backend.callbackApi !== undefined) return backend.callbackApi;
+  return backend.constructor && backend.constructor.callbackApi;
+}
 var Backend = function () {
   function Backend(services) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -74,7 +78,8 @@ var Backend = function () {
         });
       };
       var fc = this.backend.readMulti.bind(this.backend);
-      if (fc.length === 2) {
+      var callbackApi = callbackApiOf(this.backend);
+      if (callbackApi === false || callbackApi === undefined && fc.length === 2) {
         try {
           var r = fc(toLoad.languages, toLoad.namespaces);
           if (r && typeof r.then === 'function') {
@@ -98,10 +103,11 @@ var Backend = function () {
       var opts = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
       if (!this.backend || !this.backend.create) return;
       var fc = this.backend.create.bind(this.backend);
-      if (fc.length < 6) {
+      var callbackApi = callbackApiOf(this.backend);
+      if (callbackApi === false || callbackApi === undefined && fc.length < 6) {
         try {
           var r;
-          if (fc.length === 5) {
+          if (callbackApi === false || fc.length === 5) {
             r = fc(languages, namespace, key, fallbackValue, opts);
           } else {
             r = fc(languages, namespace, key, fallbackValue);
@@ -123,6 +129,7 @@ var Backend = function () {
   }]);
 }();
 Backend.type = 'backend';
+Backend.callbackApi = true;
 var _default = exports.default = Backend;
 module.exports = exports.default;
 },{"./utils.js":2}],2:[function(require,module,exports){
