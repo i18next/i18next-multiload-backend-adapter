@@ -1,3 +1,8 @@
+### 2.3.2
+
+- fix: with i18next 26.7.0 or later, `create` gets its options (`isUpdate`). i18next 26.7.0 deprecates guessing the calling convention of a backend from the number of parameters of its methods; the backend now declares it with `callbackApi`, so i18next calls `read` and `create` with a callback (and passes `create` its options), and debug mode no longer logs the deprecation notice. Older i18next versions ignore it.
+- feat: the wrapped backend is called the way its own `callbackApi` declares (`true`: callbacks, `false`: a promise or a value), like i18next 26.7 does; without it, the number of parameters decides, as before.
+
 ### 2.3.1
 
 - security: `extend()` iterates own enumerable keys only and skips `__proto__` / `constructor` / `prototype`. It merged with `for...in` and no own-property check, so a source object carrying an own `__proto__` key (as `JSON.parse` produces) reassigned the target's prototype, and an already-polluted `Object.prototype` had its inherited keys copied onto the target. The package itself never calls `extend()`, but it is published as part of `cjs/utils.js` / `esm/utils.js`, so it is kept and fixed rather than removed.
